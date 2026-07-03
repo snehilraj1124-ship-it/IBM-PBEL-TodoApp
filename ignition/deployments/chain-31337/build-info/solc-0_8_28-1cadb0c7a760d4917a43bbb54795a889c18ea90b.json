@@ -1,0 +1,49 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-1cadb0c7a760d4917a43bbb54795a889c18ea90b",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "compilerType": "solc",
+  "toolVersions": {
+    "hardhat": "3.9.1"
+  },
+  "userSourceNameMap": {
+    "contracts/Todo.sol": "project/contracts/Todo.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode.linkReferences",
+            "evm.bytecode.object",
+            "evm.bytecode.opcodes",
+            "evm.bytecode.sourceMap",
+            "evm.deployedBytecode.immutableReferences",
+            "evm.deployedBytecode.linkReferences",
+            "evm.deployedBytecode.object",
+            "evm.deployedBytecode.opcodes",
+            "evm.deployedBytecode.sourceMap",
+            "evm.methodIdentifiers"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Todo.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.28;\r\n\r\ncontract Todo {\r\n\r\n    struct Task {\r\n        string text;\r\n        bool completed;\r\n    }\r\n\r\n    Task[] public tasks;\r\n\r\n    function addTask(string memory _text) public {\r\n        tasks.push(Task(_text, false));\r\n    }\r\n\r\n    function toggleTask(uint256 index) public {\r\n        require(index < tasks.length, \"Invalid task\");\r\n        tasks[index].completed = !tasks[index].completed;\r\n    }\r\n\r\n    function getTask(uint256 index) public view returns (string memory, bool) {\r\n        require(index < tasks.length, \"Invalid task\");\r\n        return (tasks[index].text, tasks[index].completed);\r\n    }\r\n\r\n    function getTaskCount() public view returns (uint256) {\r\n        return tasks.length;\r\n    }\r\n}"
+      }
+    }
+  }
+}
